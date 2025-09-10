@@ -51,7 +51,7 @@ const callOllamaDirectly = async (
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                model: 'llama3.2:latest',
+                model: 'llama3.2:latest', //
                 messages: [
                     { role: 'user', content: prompt }
                 ],
