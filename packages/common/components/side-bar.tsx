@@ -17,11 +17,11 @@ import {
 import {
     IconArrowBarLeft,
     IconArrowBarRight,
+    IconChartBar,
     IconCommand,
     IconLogout,
     IconPinned,
     IconPlus,
-    IconSearch,
     IconSelector,
     IconSettings,
     IconSettings2,
@@ -36,6 +36,7 @@ export const Sidebar = () => {
     const { threadId: currentThreadId } = useParams();
     const pathname = usePathname();
     const { setIsCommandSearchOpen } = useRootContext();
+    const { push } = useRouter();
     const isChatPage = pathname === '/chat';
     const threads = useChatStore(state => state.threads);
     const pinThread = useChatStore(state => state.pinThread);
@@ -53,7 +54,6 @@ export const Sidebar = () => {
     const setIsSidebarOpen = useAppStore(state => state.setIsSidebarOpen);
     const isSidebarOpen = useAppStore(state => state.isSidebarOpen);
     const setIsSettingsOpen = useAppStore(state => state.setIsSettingsOpen);
-    const { push } = useRouter();
     const groupedThreads: Record<string, Thread[]> = {
         today: [],
         yesterday: [],
@@ -144,8 +144,8 @@ export const Sidebar = () => {
                         >
                             <Logo className="text-brand size-5" />
                             {isSidebarOpen && (
-                                <p className="font-clash text-foreground text-lg font-bold tracking-wide">
-                                    llmchat.co
+                                <p className="font-clash text-blue-600 text-lg font-bold tracking-wide">
+                                    Agro Float
                                 </p>
                             )}
                         </motion.div>
@@ -202,33 +202,20 @@ export const Sidebar = () => {
                         size={isSidebarOpen ? 'sm' : 'icon-sm'}
                         variant="bordered"
                         rounded="lg"
-                        tooltip={isSidebarOpen ? undefined : 'Search'}
+                        tooltip={isSidebarOpen ? undefined : 'Visualization'}
                         tooltipSide="right"
                         className={cn(
                             isSidebarOpen && 'relative w-full',
                             'text-muted-foreground justify-center px-2'
                         )}
-                        onClick={() => setIsCommandSearchOpen(true)}
+                        onClick={() => {
+                            console.log('🔧 Sidebar: Visualization button clicked!');
+                            push('/visualization');
+                        }}
                     >
-                        <IconSearch size={14} strokeWidth={2} className={cn(isSidebarOpen)} />
-                        {isSidebarOpen && 'Search'}
+                        <IconChartBar size={14} strokeWidth={2} className={cn(isSidebarOpen)} />
+                        {isSidebarOpen && 'Visualization'}
                         {isSidebarOpen && <div className="flex-1" />}
-                        {isSidebarOpen && (
-                            <div className="flex flex-row items-center gap-1">
-                                <Badge
-                                    variant="secondary"
-                                    className="bg-muted-foreground/10 text-muted-foreground flex size-5 items-center justify-center rounded-md p-0"
-                                >
-                                    <IconCommand size={12} strokeWidth={2} className="shrink-0" />
-                                </Badge>
-                                <Badge
-                                    variant="secondary"
-                                    className="bg-muted-foreground/10 text-muted-foreground flex size-5 items-center justify-center rounded-md p-0"
-                                >
-                                    K
-                                </Badge>
-                            </div>
-                        )}
                     </Button>
                 </Flex>
                 <Flex
@@ -239,24 +226,7 @@ export const Sidebar = () => {
                         !isSidebarOpen && 'items-center justify-center px-0'
                     )}
                 >
-                    {/* <Link href="/recent" className={isSidebarOpen ? 'w-full' : ''}>
-                        <Button
-                            size={isSidebarOpen ? 'xs' : 'icon-sm'}
-                            variant="bordered"
-                            rounded="lg"
-                            tooltip={isSidebarOpen ? undefined : 'Recent'}
-                            tooltipSide="right"
-                            className={cn(
-                                'text-muted-foreground w-full justify-start',
-                                !isSidebarOpen && 'w-auto justify-center'
-                            )}
-                        >
-                            <IconHistory size={14} strokeWidth={2} />
-                            {isSidebarOpen && 'Recent'}
-                            {isSidebarOpen && <span className="inline-flex flex-1" />}
-                            {isSidebarOpen && <IconChevronRight size={14} strokeWidth={2} />}
-                        </Button>
-                    </Link> */}
+                   
                 </Flex>
 
                 {false ? (

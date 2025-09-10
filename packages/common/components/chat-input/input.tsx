@@ -275,7 +275,6 @@ export const ChatInput = ({
                                             <GeneratingStatus />
                                         ) : (
                                             <Flex gap="xs" items="center" className="shrink-0">
-                                                <ChatModeButton />
                                                 {/* <AttachmentButton /> */}
                                                 <WebSearchButton />
                                                 {/* <ToolsMenu /> */}

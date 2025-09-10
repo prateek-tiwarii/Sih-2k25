@@ -15,38 +15,38 @@ const bricolage = Bricolage_Grotesque({
 import './globals.css';
 
 export const metadata: Metadata = {
-    title: 'llmchat.co - Go Deeper with AI-Powered Research & Agentic Workflows',
+    title: 'Agro Float - Ocean Data Visualization & Analysis Platform',
     description:
-        'Experience deep, AI-powered research with agentic workflows and a wide variety of models for advanced productivity.',
-    keywords: 'AI chat, LLM, language models, privacy, minimal UI, ollama, chatgpt',
-    authors: [{ name: 'Trendy design', url: 'https://trendy.design' }],
-    creator: 'Trendy design',
-    publisher: 'Trendy design',
+        'Advanced ocean data visualization and analysis platform with AI-powered insights for oceanographic research and marine data exploration.',
+    keywords: 'ocean data, oceanography, marine data, visualization, AI analysis, research platform',
+    authors: [{ name: 'Agro Float Team', url: 'https://agrofloat.com' }],
+    creator: 'Agro Float Team',
+    publisher: 'Agro Float',
     openGraph: {
-        title: 'llmchat.co - Go Deeper with AI-Powered Research & Agentic Workflows',
-        siteName: 'llmchat.co',
+        title: 'Agro Float - Ocean Data Visualization & Analysis Platform',
+        siteName: 'Agro Float',
         description:
-            'Experience deep, AI-powered research with agentic workflows and a wide variety of models for advanced productivity.',
-        url: 'https://llmchat.co',
+            'Advanced ocean data visualization and analysis platform with AI-powered insights for oceanographic research and marine data exploration.',
+        url: 'https://agrofloat.com',
         type: 'website',
         locale: 'en_US',
         images: [
             {
-                url: 'https://llmchat.co/og-image.jpg',
+                url: 'https://agrofloat.com/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'LLMChat Preview',
+                alt: 'Agro Float Preview',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'llmchat.co - Go Deeper with AI-Powered Research & Agentic Workflows',
-        site: 'llmchat.co',
-        creator: '@llmchat_co',
+        title: 'Agro Float - Ocean Data Visualization & Analysis Platform',
+        site: 'agrofloat.com',
+        creator: '@agrofloat',
         description:
-            'Experience deep, AI-powered research with agentic workflows and a wide variety of models for advanced productivity.',
-        images: ['https://llmchat.co/twitter-image.jpg'],
+            'Advanced ocean data visualization and analysis platform with AI-powered insights for oceanographic research and marine data exploration.',
+        images: ['https://agrofloat.com/twitter-image.jpg'],
     },
     robots: {
         index: true,
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         },
     },
     alternates: {
-        canonical: 'https://llmchat.co',
+        canonical: 'https://agrofloat.com',
     },
 };
 
