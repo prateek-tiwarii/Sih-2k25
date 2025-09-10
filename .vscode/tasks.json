@@ -1,0 +1,80 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build repo",
+			"type": "shell",
+			"command": "bun run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build repo",
+			"type": "shell",
+			"command": "bun run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build repo",
+			"type": "shell",
+			"command": "bun run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build repo",
+			"type": "shell",
+			"command": "bun run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build repo",
+			"type": "shell",
+			"command": "bun run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build repo",
+			"type": "shell",
+			"command": "bun run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build after strip",
+			"type": "shell",
+			"command": "bun run build",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}
