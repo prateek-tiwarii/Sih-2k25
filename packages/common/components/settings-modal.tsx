@@ -1,7 +1,7 @@
 'use client';
 import { Alert, AlertDescription, DialogFooter } from '@repo/ui';
 import { Button } from '@repo/ui/src/components/button';
-import { IconBolt, IconBoltFilled, IconKey, IconSettings2 } from '@tabler/icons-react';
+import { IconBolt, IconKey, IconSettings2 } from '@tabler/icons-react';
 
 import { Badge, Dialog, DialogContent, Input } from '@repo/ui';
 
@@ -213,7 +213,7 @@ export const CreditsSettings = () => {
             title: 'Credits',
             value: (
                 <div className="flex h-7 flex-row items-center gap-1 rounded-full py-1">
-                    <IconBoltFilled size={14} strokeWidth={2} className="text-brand" />
+                    <IconBolt size={14} strokeWidth={2} className="text-brand" />
                     <span className="text-brand text-sm font-medium">{remainingCredits}</span>
                     <span className="text-brand text-sm opacity-50">/</span>
                     <span className="text-brand text-sm opacity-50">{maxLimit}</span>

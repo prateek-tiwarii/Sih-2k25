@@ -7,8 +7,8 @@ const config = {
         './app/**/*.{js,ts,jsx,tsx,mdx}',
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
         './lib/**/*.{js,ts,jsx,tsx,mdx}',
-        '../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}',
-        '../../packages/common/**/*.{js,ts,jsx,tsx,mdx}',
+        '../../packages/ui/src/**/*.{ts,tsx,mdx}',
+        '../../packages/common/**/*.{ts,tsx,mdx}',
     ],
     theme: {
         extend: {

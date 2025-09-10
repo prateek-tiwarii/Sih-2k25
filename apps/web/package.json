@@ -12,6 +12,8 @@
     "dependencies": {
         "@electric-sql/pglite": "0.2.13",
         "@electric-sql/pglite-repl": "^0.2.15",
+        "@radix-ui/react-slot": "^1.2.3",
+        "@tabler/icons-react": "3.11.0",
         "@types/plotly.js": "^3.0.4",
         "avvvatars-react": "^0.4.2",
         "axios": "^1.7.2",

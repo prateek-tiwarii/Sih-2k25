@@ -1,5 +1,5 @@
 import { cn } from '@repo/ui';
-import { IconBoltFilled, IconCodeDots, IconSpiral, IconTools } from '@tabler/icons-react';
+import { IconBolt, IconCodeDots, IconSpiral, IconTools } from '@tabler/icons-react';
 
 export const ToolIcon = ({ className }: { className?: string }) => {
     return (
@@ -53,7 +53,7 @@ export const CreditIcon = ({
                 variant === 'muted' && 'border-none'
             )}
         >
-            <IconBoltFilled size={14} strokeWidth={2} className="text-muted-foreground" /> {credits}
+            <IconBolt size={14} strokeWidth={2} className="text-muted-foreground" /> {credits}
         </div>
     );
 };
