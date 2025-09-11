@@ -18,16 +18,13 @@ import { ChatModeButton, GeneratingStatus, SendStopButton, WebSearchButton } fro
 import { ChatEditor } from './chat-editor';
 import { ImageUpload } from './image-upload';
 
-// Direct Ollama API call function
-const callOllamaDirectly = async (
-    prompt: string, 
-    threadId: string, 
+// OceanRAG API call function
+const callOceanRAGRag = async (
+    prompt: string,
+    threadId: string,
     updateThreadItem: (threadId: string, item: Partial<ThreadItem>) => void,
     setIsGenerating: (generating: boolean) => void
 ) => {
-    console.log('🚀 Direct Ollama: Starting call with prompt:', prompt);
-    
-    // Create AI thread item
     const aiThreadItemId = nanoid();
     const aiThreadItem: Partial<ThreadItem> = {
         id: aiThreadItemId,
@@ -38,85 +35,23 @@ const callOllamaDirectly = async (
         query: prompt,
         answer: { text: '' },
     };
-    
+
     updateThreadItem(threadId, aiThreadItem);
     setIsGenerating(true);
-    
+
     try {
-        console.log('🚀 Direct Ollama: Making request to localhost:11434');
-        
-        const response = await fetch('http://127.0.0.1:11434/api/chat', {
+        const response = await fetch('http://localhost:8000/rag-chat', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                model: 'llama3.2:latest', //
-                messages: [
-                    { role: 'user', content: prompt }
-                ],
-                stream: true,
-            }),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: prompt }),
         });
-
-        console.log('🚀 Direct Ollama: Response status:', response.status);
-
-        if (!response.ok) {
-            throw new Error(`Ollama error: ${response.status}`);
-        }
-
-        const reader = response.body?.getReader();
-        if (!reader) {
-            throw new Error('No response reader');
-        }
-
-        const decoder = new TextDecoder();
-        let fullText = '';
-
-        while (true) {
-            const { done, value } = await reader.read();
-            
-            if (done) {
-                console.log('🚀 Direct Ollama: Stream completed, final text:', fullText);
-                break;
-            }
-
-            const chunk = decoder.decode(value, { stream: true });
-            const lines = chunk.split('\n').filter(line => line.trim());
-
-            for (const line of lines) {
-                try {
-                    const json = JSON.parse(line);
-                    
-                    if (json.message && json.message.content) {
-                        fullText += json.message.content;
-                        console.log('🚀 Direct Ollama: Updating text, length:', fullText.length);
-                        
-                        // Update the thread item with new text
-                        updateThreadItem(threadId, {
-                            id: aiThreadItemId,
-                            answer: { text: fullText },
-                            status: 'COMPLETED',
-                        });
-                    }
-
-                    if (json.done) {
-                        break;
-                    }
-                } catch (e) {
-                    console.warn('🚀 Direct Ollama: Failed to parse line:', line);
-                }
-            }
-        }
-
-        // Mark as completed
+        const data = await response.json();
         updateThreadItem(threadId, {
             id: aiThreadItemId,
+            answer: { text: data.answer || data.error || 'No answer returned.' },
             status: 'COMPLETED',
         });
-
     } catch (error) {
-        console.error('🚀 Direct Ollama: Error:', error);
         updateThreadItem(threadId, {
             id: aiThreadItemId,
             status: 'ERROR',
@@ -173,10 +108,10 @@ export const ChatInput = ({
     const { dropzonProps, handleImageUpload } = useImageAttachment();
     const { push } = useRouter();
     const chatMode = useChatStore(state => state.chatMode);
-    
+
     const sendMessage = async () => {
         console.log('💬 SendMessage: Starting...');
-        
+
         if (
             !isSignedIn &&
             !!ChatModeConfig[chatMode as keyof typeof ChatModeConfig]?.isAuthRequired
@@ -222,10 +157,9 @@ export const ChatInput = ({
         editor.commands.clearContent();
         clearImageAttachment();
 
-        // Call Ollama directly instead of using agent provider
-        await callOllamaDirectly(userMessage, threadId, updateThreadItem, setIsGenerating);
+        // Call OceanRAG backend instead of direct Ollama
+        await callOceanRAGRag(userMessage, threadId, updateThreadItem, setIsGenerating);
     };
-
 
     const renderChatInput = () => (
         <AnimatePresence>
@@ -317,8 +251,6 @@ export const ChatInput = ({
             {/* Messages remaining badge removed in local-only mode */}
         </AnimatePresence>
     );
-
-    
 
     const renderChatBottom = () => (
         <>
